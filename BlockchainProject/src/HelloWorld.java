@@ -1,4 +1,4 @@
-package hello;
+package BlockchainProject.src;
 
 public class HelloWorld {
     public static void main(String[] args) {

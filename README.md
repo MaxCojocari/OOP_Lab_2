@@ -13,7 +13,7 @@ In order to run this project, complete the following steps:
 
 ## System description
 
-The main entities of this system are actors who transact cryptoassets, transactions, transaction pools, cryptoassets, blocks and blockchain itself. They can be enumerated as follows:
+The main entities of this system are actors who transact cryptoassets, miners, transactions, transaction pools, cryptoassets, blocks and blockchain itself. They can be enumerated as follows:
 
 - Actors:
   - Alice

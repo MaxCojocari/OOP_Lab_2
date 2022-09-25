@@ -1,6 +1,8 @@
 package core;
+
 import java.security.*;
 import java.util.ArrayList;
+import actors.Miner;
 
 public class Block {
     public int index;
@@ -8,7 +10,10 @@ public class Block {
     public String currHash;
     public String prevHash;
     public ArrayList<Transaction> transactions;
-    public int nonce = 0;
+    public int nonce;
+
+    public Miner minerJora = new Miner();
+    private int miningRewards = 69;
 
     public Block(int index, String prevHash, ArrayList<Transaction> transactions) {
         this.index = index;
@@ -42,11 +47,14 @@ public class Block {
     }
 
     public void mineBlock(int difficulty) {
+        nonce = 0;
         String target = new String(new char[difficulty]).replace('\0', '0');
         while (!currHash.substring(0, difficulty).equals(target)) {
             nonce++;
             currHash = computeHash();
         }
+        if (currHash.substring(0, difficulty).equals(target)) 
+            minerJora.mineBlock(new Block(index, prevHash, transactions), miningRewards);
     }
 
     public String toString() {

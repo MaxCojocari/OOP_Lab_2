@@ -1,23 +1,31 @@
+package core;
 import java.security.*;
+import java.util.ArrayList;
 
 public class Block {
     public int index;
     public long timestamp;
     public String currHash;
     public String prevHash;
+    public ArrayList<Transaction> transactions;
     public int nonce = 0;
 
-
-    public Block(int index, String prevHash) {
+    public Block(int index, String prevHash, ArrayList<Transaction> transactions) {
         this.index = index;
         this.timestamp = System.currentTimeMillis();
         this.prevHash = prevHash;
+        this.transactions = transactions;
         currHash = computeHash();
     }
 
     public String computeHash() {
+        String input = index + timestamp + prevHash + nonce;
+
+        for (Transaction t: transactions) {
+            input += t.getTransactionInfo();
+        }
+
         try {
-            String input = index + timestamp + prevHash + nonce;
             MessageDigest SHA256 = MessageDigest.getInstance("SHA-256");
             byte[] hash = SHA256.digest(input.getBytes("UTF-8"));
             

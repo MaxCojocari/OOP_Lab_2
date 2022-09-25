@@ -1,11 +1,13 @@
-public class ETHCoin {
+package crypto;
+
+public class BTCCoin {
     private String name;
     private String symbol;
     private int totalSupply;
 
-    public ETHCoin(int totalSupply) {
-        this.name = "Ethereum";
-        this.symbol = "ETH";
+    public BTCCoin(int totalSupply) {
+        this.name = "Bitcoin";
+        this.symbol = "BTC";
         this.totalSupply = totalSupply;
     }
 

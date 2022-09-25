@@ -1,4 +1,5 @@
-import java.util.*;
+package core;
+import java.util.ArrayList;
 
 public class Blockchain {
     private ArrayList<Block> blockchain = new ArrayList<Block>();
@@ -7,7 +8,7 @@ public class Blockchain {
         if (blockchain.size() == 0) {
             if (validateBlock(null, block)) blockchain.add(block); 
         } else {
-            Block lastBlock = blockchain.get(blockchain.size() - 1);
+            Block lastBlock = getPrevBlock();
             if (validateBlock(lastBlock, block)) blockchain.add(block);
         }
     }
@@ -18,7 +19,7 @@ public class Blockchain {
                     newBlock.prevHash == null && 
                     newBlock.computeHash().equals(newBlock.currHash);
         }
-
+        
         return  lastBlock.currHash.equals(newBlock.prevHash) && 
                 lastBlock.timestamp < newBlock.timestamp && 
                 lastBlock.index + 1 == newBlock.index &&
@@ -33,8 +34,8 @@ public class Blockchain {
     }
 
     public void getBlocks() {
-        for (int i = 0; i < blockchain.size(); ++i) {
-            System.out.println(blockchain.get(i).toString());
+        for (Block b: blockchain) {
+            System.out.println(b.toString());
         }
     }
 

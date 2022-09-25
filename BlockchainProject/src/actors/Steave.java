@@ -1,12 +1,14 @@
-public class Bob {
+package actors;
+
+public class Steave {
+    public boolean doesSteaveLoveOOP;
     private int balanceBTC;
     private int balanceETH;
-    private int age;
 
-    public Bob(int balanceBTC, int balanceETH) {
+    public Steave(int balanceBTC, int balanceETH) {
+        this.doesSteaveLoveOOP = true;
         this.balanceBTC = balanceBTC;
         this.balanceETH = balanceETH;
-        this.age = 24;
     }
 
     public boolean sendBTC(int amount, String to) {
@@ -33,8 +35,8 @@ public class Bob {
         return true;
     }
 
-    public int getAge() {
-        return age;
+    public boolean getDoesSteaveLoveOOP() {
+        return doesSteaveLoveOOP;
     }
 
     public int getBalanceBTC() {

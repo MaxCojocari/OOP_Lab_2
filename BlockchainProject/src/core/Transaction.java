@@ -1,3 +1,4 @@
+package core;
 
 public class Transaction {
     private String sender;
@@ -15,9 +16,9 @@ public class Transaction {
     }
 
     public String getTransactionInfo() {
-        String s = "Sender:\t" + sender + "\n";
-        s = "Receiver:\t" + receiver + "\n";
-        s = "Amount:\t" + amount + " " + assetSymbol + "\n";
+        String s = "Sender:\t\t" + sender + "\n";
+        s += "Receiver:\t" + receiver + "\n";
+        s += "Amount:\t\t" + amount + " " + assetSymbol;
         return s;
     }
 

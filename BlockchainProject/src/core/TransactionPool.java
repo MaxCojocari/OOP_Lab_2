@@ -1,14 +1,21 @@
-import java.util.*;
+package core;
+import java.util.ArrayList;
+import actors.Alice;
+import actors.Bob;
+import actors.Steave;
+import crypto.BTCCoin;
+import crypto.ETHCoin;
 
 public class TransactionPool {
     public BTCCoin BTC = new BTCCoin(1000000);
     public ETHCoin ETH = new ETHCoin(2000000);
+
     public Alice alice = new Alice(100, 100);
     public Bob bob = new Bob(50, 300);
     public Steave steave = new Steave(150, 300);
 
     private ArrayList<Transaction> T = new ArrayList<Transaction>();
-    private int maxPoolSize = 5;
+    private int maxPoolSize = 3;
 
     public Transaction getTransaction(int i) {
         return T.get(i);
@@ -36,27 +43,36 @@ public class TransactionPool {
             case "Alice": {
                 success = isBTC ? alice.sendBTC(amount, receiver) : alice.sendETH(amount, receiver);
                 if (!success) return;
+                break;
             }
             case "Bob": {
                 success = isBTC ? bob.sendBTC(amount, receiver) : bob.sendETH(amount, receiver);
                 if (!success) return;
+                break;
             }
             case "Steave": {
                 success = isBTC ? steave.sendBTC(amount, receiver) : steave.sendETH(amount, receiver);
                 if (!success) return;
+                break;
             }
         }
 
         switch(receiver){
-            case "Alice":
-                if (isBTC) alice.receiveBTC(amount);
-                else alice.receiveETH(amount);
-            case "Bob":
-                if (isBTC) bob.receiveBTC(amount);
-                else bob.receiveETH(amount);
-            case "Steave":
-                if (isBTC) steave.receiveBTC(amount);
-                else steave.receiveETH(amount);
+            case "Alice": {
+                success = isBTC ? alice.receiveBTC(amount) : alice.receiveETH(amount);
+                if (!success) return;
+                break;
+            }
+            case "Bob": {
+                success = isBTC ? bob.receiveBTC(amount) : bob.receiveETH(amount);
+                if (!success) return;
+                break;
+            }
+            case "Steave": {
+                success = isBTC ? steave.receiveBTC(amount) : steave.receiveETH(amount);
+                if (!success) return;
+                break;
+            }
         }
         
         t.setChecked();
@@ -66,5 +82,17 @@ public class TransactionPool {
 
     public boolean isPoolFull() {
         return T.size() >= maxPoolSize;
+    }
+
+    public boolean checkTotalBTC() {
+        return alice.getBalanceBTC() + bob.getBalanceBTC() + steave.getBalanceBTC() <= BTC.getTotalSupply();
+    }
+
+    public boolean checkTotalETH() {
+        return alice.getBalanceETH() + bob.getBalanceETH() + steave.getBalanceETH() <= ETH.getTotalSupply();
+    }
+
+    public ArrayList<Transaction> getPool() {
+        return T;
     }
 }

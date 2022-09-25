@@ -1,25 +1,24 @@
-public class Alice {
-    public String nickname;
-    public String favouriteFAFTeacher;
+package actors;
+
+public class Bob {
     private int balanceBTC;
     private int balanceETH;
+    private int age;
 
-
-    public Alice(int balanceBTC, int balanceETH) {
-        this.nickname = "JuicyCat";
-        this.favouriteFAFTeacher = "A.Vdovicenco";
+    public Bob(int balanceBTC, int balanceETH) {
         this.balanceBTC = balanceBTC;
         this.balanceETH = balanceETH;
+        this.age = 24;
     }
 
     public boolean sendBTC(int amount, String to) {
-        if (balanceBTC <= amount || amount <= 0) return false;
+        if (balanceBTC <= amount) return false;
         balanceBTC -= amount;
         return true;
     }
-
+    
     public boolean sendETH(int amount, String to) {
-        if (balanceETH <= amount || amount <= 0) return false;
+        if (balanceETH <= amount) return false;
         balanceETH -= amount;
         return true;
     }
@@ -36,6 +35,10 @@ public class Alice {
         return true;
     }
 
+    public int getAge() {
+        return age;
+    }
+
     public int getBalanceBTC() {
         return balanceBTC;
     }
@@ -43,5 +46,4 @@ public class Alice {
     public int getBalanceETH() {
         return balanceETH;
     }
-
 }

@@ -1,23 +1,26 @@
-public class Steave {
-    public boolean doesSteaveLoveOOP;
+package actors;
+
+public class Alice {
+    public String nickname;
+    public String favouriteFAFTeacher;
     private int balanceBTC;
     private int balanceETH;
 
-
-    public Steave(int balanceBTC, int balanceETH) {
-        this.doesSteaveLoveOOP = true;
+    public Alice(int balanceBTC, int balanceETH) {
+        this.nickname = "JuicyCat";
+        this.favouriteFAFTeacher = "A.Vdovicenco";
         this.balanceBTC = balanceBTC;
         this.balanceETH = balanceETH;
     }
 
     public boolean sendBTC(int amount, String to) {
-        if (balanceBTC <= amount) return false;
+        if (balanceBTC <= amount || amount <= 0) return false;
         balanceBTC -= amount;
         return true;
     }
-    
+
     public boolean sendETH(int amount, String to) {
-        if (balanceETH <= amount) return false;
+        if (balanceETH <= amount || amount <= 0) return false;
         balanceETH -= amount;
         return true;
     }
@@ -34,10 +37,6 @@ public class Steave {
         return true;
     }
 
-    public boolean getDoesSteaveLoveOOP() {
-        return doesSteaveLoveOOP;
-    }
-
     public int getBalanceBTC() {
         return balanceBTC;
     }
@@ -45,4 +44,5 @@ public class Steave {
     public int getBalanceETH() {
         return balanceETH;
     }
+
 }

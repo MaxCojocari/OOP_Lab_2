@@ -22,11 +22,11 @@ public class Simulation {
         System.out.println("Alice's balance: " + TxPool.alice.getBalanceETH() + " ETH");
         System.out.println("Steave's balance: " + TxPool.steave.getBalanceETH() + " ETH" + "\n");
         
-        tx = new Transaction("Steave", "Bob", "ETH", 23);
+        tx = new Transaction("Steave", "John", "ETH", 23);
         TxPool.addTransaction(tx);
         System.out.println("Transaction # " + (++k) + "\n" + tx.getTransactionInfo());
         System.out.println("Steave's balance: " + TxPool.steave.getBalanceETH() + " ETH");
-        System.out.println("Bob's balance: " + TxPool.bob.getBalanceETH() + " ETH" + "\n");
+        System.out.println("John's balance: " + TxPool.john.getBalanceETH() + " ETH" + "\n");
         
         Block block = new Block(i, null, TxPool.getPool());
         block.mineBlock(2);

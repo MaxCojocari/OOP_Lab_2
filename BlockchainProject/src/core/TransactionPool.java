@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import actors.Alice;
 import actors.Bob;
 import actors.Steave;
+import actors.John;
 import crypto.BTCCoin;
 import crypto.ETHCoin;
 
@@ -13,6 +14,7 @@ public class TransactionPool {
     public Alice alice = new Alice(100, 100);
     public Bob bob = new Bob(50, 300);
     public Steave steave = new Steave(150, 300);
+    public John john = new John(270, 400);
 
     private ArrayList<Transaction> T = new ArrayList<Transaction>();
     private int maxPoolSize = 3;
@@ -55,6 +57,11 @@ public class TransactionPool {
                 if (!success) return;
                 break;
             }
+            case "John": {
+                success = isBTC ? john.sendBTC(amount, receiver) : john.sendETH(amount, receiver);
+                if (!success) return;
+                break;
+            }
         }
 
         switch(receiver){
@@ -73,6 +80,11 @@ public class TransactionPool {
                 if (!success) return;
                 break;
             }
+            case "John": {
+                success = isBTC ? john.receiveBTC(amount) : john.receiveETH(amount);
+                if (!success) return;
+                break;
+            }
         }
         
         t.setChecked();
@@ -85,11 +97,11 @@ public class TransactionPool {
     }
 
     public boolean checkTotalBTC() {
-        return alice.getBalanceBTC() + bob.getBalanceBTC() + steave.getBalanceBTC() <= BTC.getTotalSupply();
+        return alice.getBalanceBTC() + bob.getBalanceBTC() + steave.getBalanceBTC() + john.getBalanceBTC() <= BTC.getTotalSupply();
     }
 
     public boolean checkTotalETH() {
-        return alice.getBalanceETH() + bob.getBalanceETH() + steave.getBalanceETH() <= ETH.getTotalSupply();
+        return alice.getBalanceETH() + bob.getBalanceETH() + steave.getBalanceETH() + john.getBalanceETH() <= ETH.getTotalSupply();
     }
 
     public ArrayList<Transaction> getPool() {

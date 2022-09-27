@@ -14,7 +14,7 @@ public class MerkleTree {
         this.leaves = leaves;
     }
 
-    public String getMerkleRoot() {
+    public Leaf getMerkleRoot() {
         Queue<Leaf> queue = new LinkedList<Leaf>();
 
         for (Transaction t: leaves) {
@@ -35,7 +35,7 @@ public class MerkleTree {
             queue.add(newLeaf);
         }
 
-        return queue.remove().getHash();
+        return queue.remove();
     }
 
     public void getLeaves() {

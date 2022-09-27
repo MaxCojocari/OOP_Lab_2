@@ -22,7 +22,7 @@ public class Block {
         this.timestamp = System.currentTimeMillis();
         this.prevHash = prevHash;
         this.transactions = transactions;
-        this.merkleRoot = (new MerkleTree(transactions)).getMerkleRoot();
+        this.merkleRoot = (new MerkleTree(transactions)).getMerkleRoot().getHash();
         currHash = computeHash();
     }
 

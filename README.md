@@ -63,7 +63,7 @@ The `BlockchainProject` consists of `src` folder with `Simulation.java` file whe
   - `src/crypto`
     - `ETHCoin.java`
     - `BTCCoin.java`
-  - `merkletree`
+  - `src/merkletree`
     - `Leaf.java`
     - `MerkleTree.java`
 

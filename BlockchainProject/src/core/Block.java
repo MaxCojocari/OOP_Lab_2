@@ -3,12 +3,14 @@ package core;
 import java.security.*;
 import java.util.ArrayList;
 import actors.Miner;
+import merkletree.MerkleTree;
 
 public class Block {
     public int index;
     public long timestamp;
     public String currHash;
     public String prevHash;
+    public String merkleRoot;
     public ArrayList<Transaction> transactions;
     public int nonce;
 
@@ -20,6 +22,7 @@ public class Block {
         this.timestamp = System.currentTimeMillis();
         this.prevHash = prevHash;
         this.transactions = transactions;
+        this.merkleRoot = (new MerkleTree(transactions)).getMerkleRoot();
         currHash = computeHash();
     }
 
@@ -63,6 +66,7 @@ public class Block {
         s = s + "Timestamp:\t" + timestamp + "\n";
         s = s + "Nonce:\t\t" + nonce + "\n";
         s = s + "CurrentHash:\t" + currHash + "\n";
+        s = s + "Merkle root:\t" + merkleRoot + "\n";
         return s;
     }
 }

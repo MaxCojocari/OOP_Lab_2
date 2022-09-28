@@ -33,7 +33,7 @@ The main entities of this system are actors who transact cryptoassets, miners, t
    
 Each actor object has unique fields, but also exhibits common ones which are related to balances of owned assets stored in `Wallet`s. They interact between them through sending different tokens to each other, thus generating multiple transactions which are recorded in `Transaction` objects. Roughly speaking, transactions are objects which contain information about the sender, receiver, the amount of crypto and what kind of asset was sent.
 
-Synchronously, a fixed-size set of transactions are gathered in such called *transaction pools*. In `TransactionPool` object all transactions get accumulated and checked for their correctness and consistency, e.g amount of tokens sent doesn't exceed the actual sender's balance, etc. All sort of checks are done by *miners* while they cluster transactions into so called *blocks*, and then *mine* them.
+Synchronously, a fixed-size set of transactions is gathered in such called *transaction pools*. In `TransactionPool` object all transactions get accumulated and checked for their correctness and consistency, e.g amount of tokens sent doesn't exceed the actual sender's balance, etc. All sort of checks are done by *miners* while they cluster transactions into so called *blocks*, and then *mine* them.
 
 But before this, in the header of the block is inserted a *Merkle root* hash which is derived from *Merkle tree* data structure. A Merkle tree is a data structure which totals all transactions in a block and generates a digital fingerprint of the entire set of operations, allowing the user to verify whether it includes a transaction in the block. For more info check [here](https://en.wikipedia.org/wiki/Merkle_tree).
 

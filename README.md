@@ -31,7 +31,7 @@ The main entities of this system are actors who transact cryptoassets, miners, t
    - Blockchain
    - Merkle trie (Merkle root)
    
-Each actor object has unique fields, but also exhibits common ones which are related to balances of owned assets stored in `Wallet`s. They interact between them through sending different tokens to each other, thus generating multiple transactions which are recorded in `Transaction` objects. Roughly speeking, transactions are objects which contain information about the sender, receiver, the amount of crypto and what kind of asset was sent.
+Each actor object has unique fields, but also exhibits common ones which are related to balances of owned assets stored in `Wallet`s. They interact between them through sending different tokens to each other, thus generating multiple transactions which are recorded in `Transaction` objects. Roughly speaking, transactions are objects which contain information about the sender, receiver, the amount of crypto and what kind of asset was sent.
 
 Synchronously, a fixed-size set of transactions are gathered in such called *transaction pools*. In `TransactionPool` object all transactions get accumulated and checked for their correctness and consistency, e.g amount of tokens sent doesn't exceed the actual sender's balance, etc. All sort of checks are done by *miners* while they cluster transactions into so called *blocks*, and then *mine* them.
 
